@@ -1,0 +1,3 @@
+gfortran -shared -fPIC -o suma.so suma.f90
+
+dotnet run
