@@ -37,15 +37,21 @@ private static extern double suma([MarshalAs(UnmanagedType.R8)] double a,
         ShowAll();
     }
 
-    private void OnSumarButtonClicked(object sender, EventArgs e)
+private void OnSumarButtonClicked(object sender, EventArgs e)
 {
     try
     {
-        // Utilice InvariantCulture para manejar tanto "." y "," como separadores decimales
+        // Validate that inputs don't contain commas
+        if (entryNum1.Text.Contains(",") || entryNum2.Text.Contains(","))
+        {
+            resultadoLabel.Text = "Error: Use punto (.) como separador decimal";
+            return;
+        }
+
         double num1 = double.Parse(entryNum1.Text, System.Globalization.CultureInfo.InvariantCulture);
         double num2 = double.Parse(entryNum2.Text, System.Globalization.CultureInfo.InvariantCulture);
         double resultado = suma(num1, num2);
-        // Formatear la salida con InvariantCulture para utilizar . como separador decimal.
+        
         resultadoLabel.Text = "Resultado: " + resultado.ToString(System.Globalization.CultureInfo.InvariantCulture);
     }
     catch (Exception ex)
