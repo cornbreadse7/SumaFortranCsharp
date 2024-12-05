@@ -5,7 +5,8 @@ using System.Runtime.InteropServices;
 public class SumaApp : Window
 {
     [DllImport("suma.so", CallingConvention = CallingConvention.Cdecl)]
-    public static extern double suma(double a, double b);
+private static extern double suma([MarshalAs(UnmanagedType.R8)] double a, 
+                                [MarshalAs(UnmanagedType.R8)] double b);
 
     private Entry entryNum1;
     private Entry entryNum2;
@@ -37,20 +38,21 @@ public class SumaApp : Window
     }
 
     private void OnSumarButtonClicked(object sender, EventArgs e)
+{
+    try
     {
-        try
-        {
-            double num1 = double.Parse(entryNum1.Text);
-            double num2 = double.Parse(entryNum2.Text);
-            double resultado = suma(num1, num2);
-            resultadoLabel.Text = "Resultado: " + resultado.ToString();
-        }
-        catch (Exception ex)
-        {
-            resultadoLabel.Text = "Error: " + ex.Message;
-        }
+        // Utilice InvariantCulture para manejar tanto "." y "," como separadores decimales
+        double num1 = double.Parse(entryNum1.Text, System.Globalization.CultureInfo.InvariantCulture);
+        double num2 = double.Parse(entryNum2.Text, System.Globalization.CultureInfo.InvariantCulture);
+        double resultado = suma(num1, num2);
+        // Formatear la salida con InvariantCulture para utilizar . como separador decimal.
+        resultadoLabel.Text = "Resultado: " + resultado.ToString(System.Globalization.CultureInfo.InvariantCulture);
     }
-
+    catch (Exception ex)
+    {
+        resultadoLabel.Text = "Error: " + ex.Message;
+    }
+}
     public static void Main()
     {
         Application.Init();

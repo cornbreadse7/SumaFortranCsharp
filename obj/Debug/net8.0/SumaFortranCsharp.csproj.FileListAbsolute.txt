@@ -21,3 +21,4 @@
 /home/cicepac/Documentos/SumaFortranCsharp/obj/Debug/net8.0/SumaFortranCsharp.pdb
 /home/cicepac/Documentos/SumaFortranCsharp/obj/Debug/net8.0/SumaFortranCsharp.genruntimeconfig.cache
 /home/cicepac/Documentos/SumaFortranCsharp/obj/Debug/net8.0/ref/SumaFortranCsharp.dll
+/home/cicepac/Documentos/SumaFortranCsharp/obj/Debug/net8.0/SumaFortranCsharp.sourcelink.json
